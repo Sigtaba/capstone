@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 import YTSearch from 'youtube-api-search';
 import Search from './components/Search';
 import Results from './components/Results';
@@ -29,11 +30,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      this.setState({ user });
-    }
-  });
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      }
+    });
+  }
 
   videoSearch(term) {
     YTSearch({key: API_KEY, term: term}, (videos) => {
@@ -62,7 +64,7 @@ class App extends Component {
   login() {
     auth.signInWithPopup(provider)
       .then((result) => {
-        const user = result.user;
+        const user = result.user.email;
         this.setState({
           user
         });
@@ -71,14 +73,12 @@ class App extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const itemsRef = firebase.database().ref('items');
-    const item = {
-      user: this.state.username,
-      video: this.state.selectedVideo
-    }
-    itemsRef.push(item);
+    const itemsRef = firebase.database().ref(this.state.user.displayName);
+    const video = this.state.selectedVideo
+
+    itemsRef.push(video);
     this.setState({
-      username: '',
+      // user: '',
       selectedVideo: ''
     });
   }
@@ -92,7 +92,11 @@ class App extends Component {
       <div>
         <div className="navbar">
           {this.state.user ?
-            <button onClick={this.logout}>Log Out</button>
+            <div className='user-profile'>
+              <img src={this.state.user.photoURL} />
+              <h3>Welcome {this.state.user.displayName}</h3>
+              <button onClick={this.logout}>Log Out</button>
+            </div>
             :
             <button onClick={this.login}>Log In</button>
           }
