@@ -18,7 +18,6 @@ class App extends Component {
     this.state = {
       videos: [],
       selectedVideo: null,
-      username: '',
       user: null
     };
 
@@ -74,21 +73,17 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const itemsRef = firebase.database().ref(this.state.user.displayName);
-    const video = this.state.selectedVideo
+    const item = {
+      videoDetails: this.state.selectedVideo
+    }
 
-    itemsRef.push(video);
-    this.setState({
-      // user: '',
-      selectedVideo: ''
-    });
+    itemsRef.push(item);
   }
 
   render() {
     const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 500)
 
     return (
-      // console.log({this.state.selectedVideo.id.videoId})
-
       <div>
         <div className="navbar">
           {this.state.user ?
@@ -102,10 +97,7 @@ class App extends Component {
           }
         </div>
         <VideoDetails video={this.state.selectedVideo} />
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" name="username" placeholder="username" onChange={this.handleChange} value={this.state.username} />
-          <button>Add video</button>
-        </form>
+        <button onClick={this.handleSubmit}>Save Video</button>
         <Search onSearchTermChange={videoSearch} />
         <Results
           onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
