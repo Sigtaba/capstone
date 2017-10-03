@@ -18,7 +18,8 @@ class App extends Component {
     this.state = {
       videos: [],
       selectedVideo: null,
-      user: null
+      user: null,
+      items: []
     };
 
     this.videoSearch('comedy');
@@ -85,17 +86,7 @@ class App extends Component {
 
     return (
       <div>
-        <div className="navbar">
-          {this.state.user ?
-            <div className='user-profile'>
-              <img src={this.state.user.photoURL} />
-              <h3>Welcome {this.state.user.displayName}</h3>
-              <button onClick={this.logout}>Log Out</button>
-            </div>
-            :
-            <button onClick={this.login}>Log In</button>
-          }
-        </div>
+        <Login currentUser={this.state.user} userLogin={this.login} userLogout={this.logout}/>
         <VideoDetails video={this.state.selectedVideo} />
         <button onClick={this.handleSubmit}>Save Video</button>
         <Search onSearchTermChange={videoSearch} />
