@@ -1,25 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
+import firebase, { auth, provider } from '../Firebase';
 
 
-const UserVideos = (props) => {
+class UserVideos extends Component {
+  constructor(props) {
+    super(props)
+  };
 
-  return (
-    <section className='display-item'>
-      <div className="wrapper">
-        <ul>
-          {props.items.map((item) => {
-            return (
+  render() {
+    return (
+      <section className='display-item'>
+        <div className="wrapper">
+          <ul>
+            {this.props.selectedItems.map((item) => {
+              return (
 
-              <li key={props.items.key}>
-                <h3>{props.items.title}</h3>
-                <p>{props.items.channel}</p>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-    </section>
-  )
+                <li key={item.key}>
+                  <h3>{item.title}</h3>
+                  <p>{item.user}</p>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+
 }
 
 export default UserVideos;
