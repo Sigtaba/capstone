@@ -17,7 +17,7 @@ class UserVideos extends Component {
 
                 <li key={item.key}>
                   <h3>{item.title}</h3>
-                  <p>{item.user}</p>
+                  <p>{item.channel}</p>
                 </li>
               )
             })}

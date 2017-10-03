@@ -28,29 +28,36 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.login = this.login.bind(this); // <-- add this line
     this.logout = this.logout.bind(this);
+    console.log('bo ' + this.state.user);
   }
 
   componentDidMount() {
+
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user });
-      }
-    });
 
-    const itemsRef = firebase.database().ref('Isabella Eileen');
-    itemsRef.on('value', (snapshot) => {
-      let items = snapshot.val();
-      let newState = [];
-      for (let item in items) {
-        newState.push({
-          id: item,
-          title: items[item].videoDetails.snippet.title,
-          user: items[item].videoDetails.snippet.channelTitle
+        const itemsRef = firebase.database().ref(this.state.user.displayName);
+        itemsRef.on('value', (snapshot) => {
+          let items = snapshot.val();
+          let newState = [];
+          for (let item in items) {
+            newState.push({
+              id: item,
+              title: items[item].videoDetails.snippet.title,
+              channel: items[item].videoDetails.snippet.channelTitle
+            });
+          }
+          this.setState({
+            items: newState
+          });
         });
       }
-      this.setState({
-        items: newState
-      });
+      else {
+        this.setState({
+          items: []
+        })
+      }
     });
   }
 
@@ -96,6 +103,7 @@ class App extends Component {
     }
 
     itemsRef.push(item);
+    console.log('hy ' + this.state.user.displayName);
   }
 
   render() {
