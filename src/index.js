@@ -35,6 +35,22 @@ class App extends Component {
         this.setState({ user });
       }
     });
+
+    const itemsRef = firebase.database().ref('Isabella Eileen');
+    itemsRef.on('value', (snapshot) => {
+      let items = snapshot.val();
+      let newState = [];
+      for (let item in items) {
+        newState.push({
+          id: item,
+          title: items[item].videoDetails.snippet.title,
+          user: items[item].videoDetails.snippet.channelTitle
+        });
+      }
+      this.setState({
+        items: newState
+      });
+    });
   }
 
   videoSearch(term) {
@@ -93,6 +109,20 @@ class App extends Component {
         <Results
           onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
           videos={this.state.videos} />
+          <section className='display-item'>
+            <div className="wrapper">
+              <ul>
+                {this.state.items.map((item) => {
+                  return (
+                    <li key={item.id}>
+                      <h3>{item.title}</h3>
+                      <p>{item.user}</p>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          </section>
       </div>
     );
   }
