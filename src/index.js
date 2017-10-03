@@ -6,6 +6,7 @@ import YTSearch from 'youtube-api-search';
 import Search from './components/Search';
 import Results from './components/Results';
 import VideoDetails from './components/VideoDetails';
+import UserVideos from './components/UserVideos';
 import Login from './components/Login';
 import firebase, { auth, provider } from './components/Firebase';
 const API_KEY = 'AIzaSyBrFr4VoKtr7mJYbq1TcSTwxNjYfb9TTag';
@@ -109,6 +110,7 @@ class App extends Component {
         <Results
           onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
           videos={this.state.videos} />
+
           <section className='display-item'>
             <div className="wrapper">
               <ul>
@@ -123,6 +125,8 @@ class App extends Component {
               </ul>
             </div>
           </section>
+          <UserVideos items={this.state.items} />
+
       </div>
     );
   }
