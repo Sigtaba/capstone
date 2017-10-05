@@ -3,7 +3,8 @@ import React from 'react';
 const UserVideoDetails = ({userVideo}) => {
   if (!userVideo) {
     return (
-      <div></div>
+      <div className="video-detail col-md-8">
+      </div>
     );
   }
 
