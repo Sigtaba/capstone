@@ -1,0 +1,31 @@
+.header {
+  background-color: white;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+}
+
+.icon {
+  margin-left: 20px;
+  width: 30px;
+}
+
+.save-video {
+  width: 150px;
+  height: 30px;
+  background-color: white;
+  border: 1px solid black;
+  margin: 20px 0px 10px 40px;
+}
+
+.video-detail-page {
+  display: flex;
+  flex-direction: row;
+}
+
+hr {
+  margin: 40px;
+}

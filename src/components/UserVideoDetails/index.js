@@ -1,7 +1,11 @@
 import React from 'react';
+import firebase, { auth, provider } from '../Firebase';
+import './styles.css';
 
 const UserVideoDetails = ({userVideo}) => {
   if (!userVideo) {
+
+
     return (
       <div className="video-detail col-md-8">
       </div>

@@ -1,21 +1,27 @@
 import React from 'react';
+import './styles.css';
+
 
 const VideoDetails = ({video}) => {
+
   if (!video) {
     return <div>Loading...</div>;
   }
 
   const videoId = video.id.videoId;
   const url = `https://www.youtube.com/embed/${videoId}`;
+  console.log(video);
 
   return (
-    <div className="video-detail col-md-8">
-      <div className="embed-responsive embed-responsive-16by9">
-        <iframe className="embed-responsive-item" src={url}></iframe>
+    <div className="video-details">
+      <div className="videoWrapper">
+        <iframe src={url}></iframe>
       </div>
       <div className="details">
-        <div>{video.snippet.title}</div>
-        <div>{video.snippet.description}</div>
+        <h3 className="video-title">{video.snippet.title}</h3>
+        <p className="video-channel">Uploaded by: {video.snippet.channelTitle}</p>
+        {/* <p className="video-channel">Published on: {video.snippet.publishedAt}</p> */}
+        <p className="video-description">{video.snippet.description}</p>
       </div>
     </div>
 

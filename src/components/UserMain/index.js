@@ -2,6 +2,7 @@ import React from 'react';
 import UserResults from '../UserResults';
 import UserVideoDetails from '../UserVideoDetails';
 import firebase, { auth, provider } from '../Firebase';
+import { Link } from 'react-router-dom';
 
 
 class UserMain extends React.Component {
@@ -10,7 +11,8 @@ class UserMain extends React.Component {
 
     this.state = {
       items: [],
-      selectedUserVideo: null
+      // selectedUserVideo: null,
+      currentUser: null
     };
   }
 
@@ -30,11 +32,15 @@ class UserMain extends React.Component {
               title: items[item].videoDetails.snippet.title,
               channel: items[item].videoDetails.snippet.channelTitle,
               imageUrl: items[item].videoDetails.snippet.thumbnails.default.url,
-              videoId: items[item].videoDetails.id.videoId
+              videoId: items[item].videoDetails.id.videoId,
+              userId: auth.currentUser.displayName
             });
           }
           this.setState({
-            items: newState 
+            items: newState,
+            currentUser: auth.currentUser.displayName,
+            currentUserImg: auth.currentUser.photoURL,
+            selectedUserVideo: this.state.items[0]
           });
         });
       }
@@ -49,6 +55,16 @@ class UserMain extends React.Component {
   render() {
     return (
       <div>
+        <div className="header">
+          <img src={this.state.currentUserImg} />
+          <h3>Welcome {this.state.currentUser}</h3>
+          <Link to={`/search`}>
+            <button>Search</button>
+          </Link>
+          <Link to={`/`}>
+            <button>Logout</button>
+          </Link>
+        </div>
         <UserVideoDetails userVideo={this.state.selectedUserVideo} />
         <UserResults
           onUserVideoSelect={selectedUserVideo => this.setState({selectedUserVideo}) }

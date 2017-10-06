@@ -17,7 +17,4 @@ const UserResult = ({video, onUserVideoSelect }) => {
   );
 };
 
-
-
-
 export default UserResult;

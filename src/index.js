@@ -27,14 +27,6 @@ class App extends Component {
     this.logout = this.logout.bind(this);
   }
 
-  componentDidMount() {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ user });
-      }
-    });
-  }
-
 
 //not sure what this does//
   handleChange(e) {

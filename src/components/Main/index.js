@@ -6,6 +6,7 @@ import VideoDetails from '../VideoDetails';
 import YTSearch from 'youtube-api-search';
 import firebase, { auth, provider } from '../Firebase';
 import { Link } from 'react-router-dom';
+import './styles.css';
 const API_KEY = 'AIzaSyBrFr4VoKtr7mJYbq1TcSTwxNjYfb9TTag';
 
 
@@ -23,7 +24,7 @@ class Main extends React.Component {
   }
 
     videoSearch(term) {
-      YTSearch({key: API_KEY, term: term}, (videos) => {
+      YTSearch({key: API_KEY, term: term, maxResults: 20}, (videos) => {
         this.setState({
           videos: videos,
           selectedVideo: videos[0]
@@ -31,9 +32,8 @@ class Main extends React.Component {
       });
     }
 
-    handleSubmit() {
-      // e.preventDefault();
-      console.log(auth.currentUser.uid);
+    handleSubmit(e) {
+      e.preventDefault();
       if (auth.currentUser) {
         const itemsRef = firebase.database().ref(auth.currentUser.uid);
         const item = {
@@ -46,15 +46,24 @@ class Main extends React.Component {
       }
     }
 
-
     render() {
       const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 500)
       return (
         <div>
+          <div className="header">
+            <h2>TubeTube</h2>
+            <div className="icons">
+              <Link to={`/user`}>
+                <img className="icon" src={require(`../../images/profile.png`)} />
+              </Link>
+              <Link to={`/`}>
+                <img className="icon" src={require(`../../images/logout.png`)} />
+              </Link>
+            </div>
+          </div>
           <VideoDetails video={this.state.selectedVideo} />
-          <Link to={`/user`}>
-            <button onClick={this.handleSubmit}>Save Video</button>
-          </Link>
+          <button className="save-video" onClick={this.handleSubmit}>Save Video</button>
+          <hr/>
           <Search onSearchTermChange={videoSearch} />
           <Results
             onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
