@@ -13,7 +13,7 @@ const UserResults = (props) => {
   });
 
   return (
-    <ul className="col-md-4 list-group">
+    <ul className="grid-container">
       {userResultItems}
     </ul>
   );

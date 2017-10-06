@@ -16,17 +16,21 @@ const UserVideoDetails = ({userVideo}) => {
   const url = `https://www.youtube.com/embed/${userVideoId}`;
 
   return (
-    <div className="video-detail col-md-8">
-      <div className="embed-responsive embed-responsive-16by9">
-        <iframe className="embed-responsive-item" src={url}></iframe>
+    <div className="video-details">
+      <div className="videoWrapper">
+        <iframe src={url}></iframe>
       </div>
       <div className="details">
-        <div>{userVideo.title}</div>
-        <div>{userVideo.channel}</div>
+        <h3 className="video-title">{userVideo.title}</h3>
+        <p className="video-channel">Uploaded by: {userVideo.channel}</p>
+        <p className="video-description">hi</p>
       </div>
     </div>
-
   );
 };
+
+
+
+
 
 export default UserVideoDetails;

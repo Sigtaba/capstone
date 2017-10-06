@@ -3,6 +3,7 @@ import UserResults from '../UserResults';
 import UserVideoDetails from '../UserVideoDetails';
 import firebase, { auth, provider } from '../Firebase';
 import { Link } from 'react-router-dom';
+import './styles.css';
 
 
 class UserMain extends React.Component {
@@ -11,7 +12,7 @@ class UserMain extends React.Component {
 
     this.state = {
       items: [],
-      // selectedUserVideo: null,
+      selectedUserVideo: null,
       currentUser: null
     };
   }
@@ -31,7 +32,7 @@ class UserMain extends React.Component {
               id: item,
               title: items[item].videoDetails.snippet.title,
               channel: items[item].videoDetails.snippet.channelTitle,
-              imageUrl: items[item].videoDetails.snippet.thumbnails.default.url,
+              imageUrl: items[item].videoDetails.snippet.thumbnails.high.url,
               videoId: items[item].videoDetails.id.videoId,
               userId: auth.currentUser.displayName
             });
@@ -40,8 +41,7 @@ class UserMain extends React.Component {
             items: newState,
             currentUser: auth.currentUser.displayName,
             currentUserImg: auth.currentUser.photoURL,
-            selectedUserVideo: this.state.items[0]
-          });
+          }, () => { this.setState({selectedUserVideo: this.state.items[0]}); });
         });
       }
       else {
@@ -54,16 +54,20 @@ class UserMain extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="header">
-          <img src={this.state.currentUserImg} />
-          <h3>Welcome {this.state.currentUser}</h3>
-          <Link to={`/search`}>
-            <button>Search</button>
-          </Link>
-          <Link to={`/`}>
-            <button>Logout</button>
-          </Link>
+      <div className="header-container">
+        <div className="header2">
+          <div className="header-left">
+            <img className="profile-pic" src={this.state.currentUserImg} />
+            <h3>Welcome {this.state.currentUser}</h3>
+          </div>
+          <div className="header-right">
+            <Link to={`/search`}>
+              <button>Search</button>
+            </Link>
+            <Link to={`/`}>
+              <button>Logout</button>
+            </Link>
+          </div>
         </div>
         <UserVideoDetails userVideo={this.state.selectedUserVideo} />
         <UserResults

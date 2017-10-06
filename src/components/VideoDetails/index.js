@@ -20,7 +20,6 @@ const VideoDetails = ({video}) => {
       <div className="details">
         <h3 className="video-title">{video.snippet.title}</h3>
         <p className="video-channel">Uploaded by: {video.snippet.channelTitle}</p>
-        {/* <p className="video-channel">Published on: {video.snippet.publishedAt}</p> */}
         <p className="video-description">{video.snippet.description}</p>
       </div>
     </div>

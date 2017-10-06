@@ -1,5 +1,6 @@
 import React from 'react';
 import Result from '../Result';
+import './styles.css';
 
 const Results = (props) => {
   const videoItems = props.videos.map((video) => {
@@ -12,7 +13,7 @@ const Results = (props) => {
   });
 
   return (
-    <ul className="col-md-4 list-group">
+    <ul className="grid-container">
       {videoItems}
     </ul>
   );

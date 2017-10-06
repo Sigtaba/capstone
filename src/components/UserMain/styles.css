@@ -1,0 +1,15 @@
+.header2 {
+  height: 150px;
+  width: 60vw;
+  display: flex;
+  margin: 0 auto;
+}
+
+.header-container {
+  width: 100%;
+
+}
+
+.profile-pic {
+  width: 100px;
+}
