@@ -34,6 +34,7 @@ class UserMain extends React.Component {
               channel: items[item].videoDetails.snippet.channelTitle,
               imageUrl: items[item].videoDetails.snippet.thumbnails.high.url,
               videoId: items[item].videoDetails.id.videoId,
+              videoDescription: items[item].videoDetails.snippet.description,
               userId: auth.currentUser.displayName
             });
           }

@@ -23,7 +23,7 @@ const UserVideoDetails = ({userVideo}) => {
       <div className="details">
         <h3 className="video-title">{userVideo.title}</h3>
         <p className="video-channel">Uploaded by: {userVideo.channel}</p>
-        <p className="video-description">hi</p>
+        <p className="video-description">{userVideo.videoDescription}</p>
       </div>
     </div>
   );
