@@ -1,4 +1,4 @@
-.video-list {
+.user .video-list {
   width: 100vw;
   display: flex;
   flex-direction: row;
@@ -6,26 +6,26 @@
   justify-content: space-between;
 }
 
-.media-body {
+.user .media-body {
   margin-left: 10px;
   margin-top: 5px;
 }
 
-.media-left img{
+.user .media-left img{
   width: 35vw;
 }
 
-.tiles {
+.user .tiles {
   margin-bottom: 10px;
 }
 
-.media-left {
+.user .media-left {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
 }
 
-.remove-button {
+.user .remove-button {
   margin-right: 10px;
 }
 

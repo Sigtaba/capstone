@@ -16,7 +16,7 @@ class UserResult extends React.Component {
   render() {
     const imageUrl = this.props.video.imageUrl;
     return (
-      <li onClick={() => this.props.onUserVideoSelect(this.props.video)} className="list-group-item">
+      <li onClick={() => this.props.onUserVideoSelect(this.props.video)} className="user list-group-item">
         <div className="video-list media">
           <div className="media-left">
             <img className="media-object" src={imageUrl} />
