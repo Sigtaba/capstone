@@ -7,6 +7,7 @@ import UserMain from './components/UserMain';
 import Login from './components/Login';
 import firebase, { auth, provider } from './components/Firebase';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import './index.css';
 
 
 

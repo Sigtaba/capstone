@@ -42,6 +42,8 @@ class UserMain extends React.Component {
             items: newState,
             currentUser: auth.currentUser.displayName,
             currentUserImg: auth.currentUser.photoURL,
+            currentUserEmail:
+            auth.currentUser.email,
           }, () => { this.setState({selectedUserVideo: this.state.items[0]}); });
         });
       }
@@ -57,17 +59,23 @@ class UserMain extends React.Component {
     return (
       <div className="header-container">
         <div className="header2">
-          <div className="header-left">
-            <img className="profile-pic" src={this.state.currentUserImg} />
-            <h3>Welcome {this.state.currentUser}</h3>
-          </div>
-          <div className="header-right">
+          <h2><span id="header-title-span">TUBE</span>TUBE</h2>
+          <div className="userHeader">
             <Link to={`/search`}>
-              <button>Search</button>
+              <img className="icon" src={require(`../../images/search.png`)} />
             </Link>
             <Link to={`/`}>
-              <button>Logout</button>
+              <img className="icon" src={require(`../../images/logout.png`)} />
             </Link>
+          </div>
+        </div>
+        <div>
+          <div className="profile">
+          <img className="profile-pic" src={this.state.currentUserImg} />
+            <div>
+            <h3>{this.state.currentUser}</h3>
+            <h3>{this.state.currentUserEmail}</h3>
+            </div>
           </div>
         </div>
         <UserVideoDetails userVideo={this.state.selectedUserVideo} />

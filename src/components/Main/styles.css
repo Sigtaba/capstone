@@ -15,10 +15,13 @@
 
 .save-video {
   width: 150px;
-  height: 30px;
+  height: 40px;
   background-color: white;
-  border: 1px solid black;
+  border: 2px solid black;
   margin: 20px 0px 10px 40px;
+  font-family: Apercu;
+  font-size: 16px;
+  /*border-radius:25px;*/
 }
 
 .video-detail-page {
@@ -28,4 +31,9 @@
 
 hr {
   margin: 40px;
+  border: 1px solid black;
+}
+
+#header-title-span {
+  font-size: 20px;
 }

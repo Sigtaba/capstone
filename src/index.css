@@ -1,7 +1,21 @@
+@font-face {
+  font-family: 'Apercu';
+  font-style: mono;
+  font-weight: 400;
+  src: url('../src/fonts/apercu-mono-webfont.ttf');
+}
+
+@font-face {
+  font-family: 'Apercu Bold';
+  font-style: mono;
+  font-weight: 400;
+  src: url('../src/fonts/Apercu-Bold.otf');
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: Apercu;
   overflow-x: hidden;
 }
 

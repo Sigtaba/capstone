@@ -51,7 +51,7 @@ class Main extends React.Component {
       return (
         <div>
           <div className="header">
-            <h2>TubeTube</h2>
+            <h2><span id="header-title-span">TUBE</span>TUBE</h2>
             <div className="icons">
               <Link to={`/user`}>
                 <img className="icon" src={require(`../../images/profile.png`)} />
