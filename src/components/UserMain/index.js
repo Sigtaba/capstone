@@ -30,6 +30,7 @@ class UserMain extends React.Component {
           for (let item in items) {
             newState.push({
               id: item,
+              selectedItem: items[item],
               title: items[item].videoDetails.snippet.title,
               channel: items[item].videoDetails.snippet.channelTitle,
               imageUrl: items[item].videoDetails.snippet.thumbnails.high.url,
@@ -39,13 +40,16 @@ class UserMain extends React.Component {
             });
           }
           this.setState({
+
             items: newState,
             currentUser: auth.currentUser.displayName,
+            currentUserId: auth.currentUser.uid,
             currentUserImg: auth.currentUser.photoURL,
             currentUserEmail:
             auth.currentUser.email,
           }, () => { this.setState({selectedUserVideo: this.state.items[0]}); });
         });
+        console.log("hey there" + auth.currentUser);
       }
       else {
         this.setState({
@@ -55,7 +59,10 @@ class UserMain extends React.Component {
     });
   }
 
+
+
   render() {
+
     return (
       <div className="header-container">
         <div className="header2">
@@ -78,10 +85,12 @@ class UserMain extends React.Component {
             </div>
           </div>
         </div>
-        <UserVideoDetails userVideo={this.state.selectedUserVideo} />
+        <UserVideoDetails userVideo={this.state.selectedUserVideo}/>
         <UserResults
           onUserVideoSelect={selectedUserVideo => this.setState({selectedUserVideo}) }
-          userVideos={this.state.items} />
+          userVideos={this.state.items}
+          user = {this.state.currentUserId}
+          />
       </div>
     );
   }

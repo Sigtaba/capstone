@@ -1,6 +1,7 @@
 import React from 'react';
 import UserResult from '../UserResult';
 
+
 const UserResults = (props) => {
 
   const userResultItems = props.userVideos.map((userVideo) => {
@@ -8,7 +9,8 @@ const UserResults = (props) => {
       <UserResult
         onUserVideoSelect={props.onUserVideoSelect}
         key={userVideo.etag}
-        video={userVideo} />
+        video={userVideo}
+        user={props.user}/>
     )
   });
 

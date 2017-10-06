@@ -24,6 +24,11 @@
   /*border-radius:25px;*/
 }
 
+.save-video:hover {
+  background-color: black;
+  color: white;
+}
+
 .video-detail-page {
   display: flex;
   flex-direction: row;
